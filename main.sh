@@ -99,22 +99,22 @@ disable_grub_timeout() {
 }
 
 apply_gsettings() {
-gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-gsettings set org.gnome.desktop.interface gtk-theme 'HighContrastInverse'
-gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
-gsettings set org.gnome.desktop.privacy remember-recent-files false
-gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'firefox-esr.desktop']"
-gsettings set org.gnome.desktop.background primary-color '#000000' # black
-gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
-gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
-gsettings set org.gnome.TextEditor restore-session false
-gsettings set org.gnome.desktop.screensaver lock-enabled false
-#gsettings set org.gnome.desktop.session idle-delay 0
-
-echo "successfully applied custom gnome settings for virtual machine"
+  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+  gsettings set org.gnome.desktop.interface gtk-theme 'HighContrastInverse'
+  gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+  gsettings set org.gnome.desktop.privacy remember-recent-files false
+  gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+  gsettings set org.gnome.desktop.interface show-battery-percentage true
+  gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'firefox-esr.desktop']"
+  gsettings set org.gnome.desktop.background primary-color '#000000' # black
+  gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
+  gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
+  gsettings set org.gnome.TextEditor restore-session false
+  gsettings set org.gnome.desktop.screensaver lock-enabled false
+  #gsettings set org.gnome.desktop.session idle-delay 0
+  
+  echo "successfully applied custom gnome settings for virtual machine"
 }
 
 #####################################################################
@@ -122,7 +122,7 @@ echo "successfully applied custom gnome settings for virtual machine"
 clean_repo
 
 sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends \
-  gnome-session gdm3 gnome-terminal nautilus spice-vdagent firefox-esr
+  gnome-session gdm3 gnome-terminal nautilus gnome-text-editor spice-vdagent firefox-esr
 
 set_terminal_color_bright
 enable_autologin
