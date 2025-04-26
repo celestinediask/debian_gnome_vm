@@ -87,7 +87,7 @@ clean_repo
 disable_grub_timeout
 
 mkdir ~/.config/autostart
-cp -i autorun.desktop ~/.config/autostart
+cp -i autorun.desktop ~/.config/autostart/
 
 sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends \
   gnome-session gdm3 gnome-terminal spice-vdagent 
