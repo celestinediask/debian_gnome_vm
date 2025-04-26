@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=My Script
+Exec=gnome-terminal -- bash -c "/home/$USER/debian_gnome_vm/after_boot.sh; exec bash"
+Icon=utilities-terminal
+Terminal=true
+X-GNOME-Autostart-enabled=true
