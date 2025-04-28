@@ -67,6 +67,8 @@ echo "after boot script running..."
 xdotool key Escape
 exit_if_wayland
 check_xdotool_installed
+
+gnome-extensions enable dash-to-panel@jderose9.github.com
 set_terminal_color_bright
 
 bash $SCRIPT_DIR/auth.sh &
