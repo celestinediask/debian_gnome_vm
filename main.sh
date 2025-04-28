@@ -96,6 +96,9 @@ EOL
 	
 }
 
+disable_wayland() {
+    sudo sed -i 's/^#\s*\(WaylandEnable=false\)/\1/' /etc/gdm3/daemon.conf
+}
 
 #####################################################################
 
@@ -107,6 +110,7 @@ disable_grub_timeout
 create_desktop_file "$SCRIPT_DIR/wrapper.sh"
 sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends gnome-session gdm3 gnome-terminal spice-vdagent xorg xdotool
 enable_autologin
+disable_wayland
 
 echo "rebooting in 5 seconds..."
 sleep 5
