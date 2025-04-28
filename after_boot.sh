@@ -40,6 +40,10 @@ exit_if_wayland() {
   fi
 }
 
+enable_wayland() {
+    sudo sed -i 's/^\(WaylandEnable=false\)/#\1/' /etc/gdm3/daemon.conf
+}
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 sleep 1
@@ -72,6 +76,7 @@ gsettings set org.gnome.desktop.privacy remember-recent-files false
 gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
 gsettings set org.gnome.TextEditor restore-session false
 
+enable_wayland
 mv -i ".config/autostart/autostart.desktop" ".config/autostart/autostart.desktop.disabled"
 
 end_time=$(date +%s)
