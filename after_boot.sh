@@ -53,12 +53,19 @@ check_xdotool_installed() {
   fi
 }
 
+exit_if_wayland() {
+  if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    echo "Error: Wayland session detected. xdotool requires an X11 session."
+    exit 1
+  fi
+}
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 sleep 1
 echo "after boot script running..."
 xdotool key Escape
-
+exit_if_wayland
 check_xdotool_installed
 set_terminal_color_bright
 
