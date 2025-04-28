@@ -108,7 +108,7 @@ create_desktop_file "$SCRIPT_DIR/wrapper.sh"
 sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends gnome-session gdm3 gnome-terminal spice-vdagent xdotool
 enable_autologin
 
-echo rebooting in 5 seconds
+echo "rebooting in 5 seconds..."
 sleep 5
 sudo reboot
 
