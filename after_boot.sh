@@ -26,26 +26,6 @@ set_terminal_color_bright() {
 }
 
 
-
-apply_gsettings() {
-  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-  gsettings set org.gnome.desktop.interface gtk-theme 'HighContrastInverse'
-  gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
-  gsettings set org.gnome.desktop.privacy remember-recent-files false
-  gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-  gsettings set org.gnome.desktop.interface show-battery-percentage true
-  gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'firefox-esr.desktop']"
-  gsettings set org.gnome.desktop.background primary-color '#000000' # black
-  gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
-  gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
-  gsettings set org.gnome.TextEditor restore-session false
-  gsettings set org.gnome.desktop.screensaver lock-enabled false
-  #gsettings set org.gnome.desktop.session idle-delay 0
-  
-  echo "successfully applied custom gnome settings for virtual machine"
-}
-
 check_xdotool_installed() {
   if ! command -v xdotool &> /dev/null; then
     echo "Error: xdotool is not installed. Please install it and try again."
@@ -68,14 +48,29 @@ xdotool key Escape
 exit_if_wayland
 check_xdotool_installed
 
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'HighContrastInverse'
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Terminal.desktop', 'org.gnome.Nautilus.desktop', 'firefox-esr.desktop']"
+gsettings set org.gnome.desktop.background primary-color '#000000' # black
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
+#gsettings set org.gnome.desktop.session idle-delay 0
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+
 gnome-extensions enable dash-to-panel@jderose9.github.com
+
 set_terminal_color_bright
 
 bash $SCRIPT_DIR/auth.sh &
 echo "no need to enter password manualy here..."
 sudo apt install -y nautilus gnome-text-editor firefox-esr
 
-apply_gsettings
+gsettings set org.gnome.desktop.interface icon-theme 'Adwaita'
+gsettings set org.gnome.desktop.privacy remember-recent-files false
+gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
+gsettings set org.gnome.TextEditor restore-session false
 
 end_time=$(date +%s)
 execution_time=$((end_time - start_time))
