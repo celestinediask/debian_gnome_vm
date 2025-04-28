@@ -53,6 +53,7 @@ check_xdotool_installed() {
   fi
 }
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 sleep 1
 echo "after boot script running..."
@@ -61,6 +62,8 @@ xdotool key Escape
 check_xdotool_installed
 set_terminal_color_bright
 
+bash $SCRIPT_DIR/auth.sh &
+echo "no need to enter password manualy here..."
 sudo apt install -y nautilus gnome-text-editor firefox-esr
 
 apply_gsettings
