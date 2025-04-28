@@ -72,6 +72,8 @@ gsettings set org.gnome.desktop.privacy remember-recent-files false
 gsettings set org.gnome.nautilus.icon-view captions "['none', 'size', 'none']"
 gsettings set org.gnome.TextEditor restore-session false
 
+mv -i ".config/autostart/autostart.desktop" ".config/autostart/autostart.desktop.disabled"
+
 end_time=$(date +%s)
 execution_time=$((end_time - start_time))
 echo "debian gnome minimal virtual machine setup has been successfully completed in $execution_time seconds."
