@@ -3,8 +3,6 @@
 
 set -e
 
-sudo test || true
-
 start_time=$(date +%s)
 
 set_terminal_color_bright() {
@@ -48,6 +46,19 @@ apply_gsettings() {
   echo "successfully applied custom gnome settings for virtual machine"
 }
 
+check_xdotool_installed() {
+  if ! command -v xdotool &> /dev/null; then
+    echo "Error: xdotool is not installed. Please install it and try again."
+    exit 1
+  fi
+}
+
+
+sleep 1
+echo "after boot script running..."
+xdotool key Escape
+
+check_xdotool_installed
 set_terminal_color_bright
 
 sudo apt install -y nautilus gnome-text-editor firefox-esr

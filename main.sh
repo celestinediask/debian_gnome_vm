@@ -3,8 +3,6 @@
 
 set -e
 
-sudo test || true
-
 start_time=$(date +%s)
 
 exec > >(tee -a "before_boot.log") 2>&1
@@ -81,17 +79,33 @@ enable_autologin() {
   echo "Autologin enabled for $CURRENT_USER."
 }
 
+create_desktop_file() {
+	echo "creating autorun desktop file..."
+  mkdir -p ~/.config/autostart
+	local exec_path="$1"
+	local desktop_file="$HOME/.config/autostart/autorun.desktop"
+
+	cat <<EOL > "$desktop_file"
+[Desktop Entry]
+Type=Application
+Name=My Script
+Exec=bash $exec_path
+Terminal=true
+X-GNOME-Autostart-enabled=true
+EOL
+	
+}
+
+
 #####################################################################
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+sudo -v
 clean_repo
 disable_grub_timeout
-
-mkdir ~/.config/autostart
-cp -i autorun.desktop ~/.config/autostart/
-
-sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends \
-  gnome-session gdm3 gnome-terminal spice-vdagent 
-
+create_desktop_file "$SCRIPT_DIR/wrapper.sh"
+sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends gnome-session gdm3 gnome-terminal spice-vdagent xdotool
 enable_autologin
 
 end_time=$(date +%s)
