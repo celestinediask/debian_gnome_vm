@@ -105,7 +105,7 @@ sudo -v
 clean_repo
 disable_grub_timeout
 create_desktop_file "$SCRIPT_DIR/wrapper.sh"
-sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends gnome-session gdm3 gnome-terminal spice-vdagent xdotool
+sudo apt update && sudo apt install -y --no-install-suggests --no-install-recommends gnome-session gdm3 gnome-terminal spice-vdagent xorg xdotool
 enable_autologin
 
 echo "rebooting in 5 seconds..."
